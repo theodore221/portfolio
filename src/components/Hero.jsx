@@ -11,15 +11,15 @@ const Hero = () => {
         className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5 `}
       >
         <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
+          <div className="w-5 h-5 rounded-full bg-[#AF5D63]" />
+          <div className="w-1 sm:h-80 h-40 green-gradient" />
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Theodore</span>
+          <h1 className={`${styles.heroHeadText} text-[#000500]`}>
+            Hi, I'm <span className="text-[#AF5D63]">Theodore</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          <p className={`${styles.heroSubText} mt-2 text-[#312F2F]`}>
             I build dynamic and
             <br className="sm:block hidden" />
             user-friendly web applications
@@ -27,12 +27,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* <ChessCanvas /> */}
-      <ComputersCanvas />
+      {/* <ChessCanvas />
+      <ComputersCanvas /> */}
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-scondary flex justify-center items-start p-2">
+          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
               animate={{ y: [0, 24, 0] }}
               transition={{

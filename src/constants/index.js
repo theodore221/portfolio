@@ -27,6 +27,9 @@ import {
   yrts,
   skinsaver,
   toshiba,
+  nike,
+  login,
+  forkify,
 } from "../assets";
 
 export const navLinks = [
@@ -127,9 +130,7 @@ const experiences = [
     date: "Sep 2022 - Sep 2023",
     points: [
       "Spearheaded the development and upkeep of a robust AngularJS / Django data driven application supporting Australian private health funds",
-      "Refined the deployment process and optimized AWS infrastructure by collaborating with DevOps consultants; which resulted in a 35% increase in the frequency of successful deployments and reduced cloud related resource costs by 20% annually.",
-      "Demonstrated adept project management in Agile methodology, actively engaging in Sprint retrospective discussions. This resulted in higher quality project outcomes and increased team engagement by 25%.",
-      "Fortified future development and maintenance by meticulously documenting crucial codebase modules.",
+      "Elevated website functionality and improved UX by leveraging React.js to revamp the application's frontend. Designed custom themed components for individual health fund organizations, leading to a 20% increase in conversions.",
     ],
   },
   {
@@ -139,9 +140,8 @@ const experiences = [
     iconBg: "#FFF",
     date: "Feb 2022 - Sep 2022",
     points: [
-      "Spearheaded the development and enhancement of the technology stack to facilitate effective STEM learning programs.",
-      "Led game development initiatives utilizing Unreal Engine 5, resulting in immersive and interactive educational experiences for students.",
-      "Conducted extensive research to identify and implement innovative teaching and learning methodologies, integrating augmented reality (AR) and virtual reality (VR) experiences.",
+      "Facilitated the development and enhancement of technology stack to develop effective STEM based learning programs with cutting-edge technology",
+      "Leveraged C++ programming skills to create engaging Arduino projects, fostering hands-on learning experiences.",
     ],
   },
   {
@@ -153,8 +153,6 @@ const experiences = [
     points: [
       "A startup developing an application that could allow for AI-based detection and tracking of various skin lesions (i.e. Melanoma, Acne, and Eczema).",
       "Developed a marketable MVP using React Native, Express.js, PostgresSQL and AWS (S3, Route 53).",
-      "Assisted in the development of a robust Image Classification model utilizing Convolutional Neural Networks built on TensorFlow.",
-      "Successfully pitched our product and business venture to UTS earning the award for “Most Technically Feasible Prototype”.",
     ],
   },
   {
@@ -165,7 +163,6 @@ const experiences = [
     date: "May 2018 - Jul 2021",
     points: [
       "Improved workflow efficiency by designing customized auto-generating templates for essential documentation using Excel Visual Basic programming.",
-      "Heightened team performance by facilitating the execution and administration tasks of the Parts & Procurement team within the Operations division.",
     ],
   },
 ];
@@ -199,16 +196,16 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Nike",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A Nike online shop landing page clone. Main aim of this project was to learn Tailwind CSS and apply it to create a professional website design.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "javascript",
         color: "green-text-gradient",
       },
       {
@@ -216,41 +213,21 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: nike,
+    source_code_link: "https://github.com/theodore221/Nike",
+    demo_link: "https://theodore221.github.io/Nike/",
   },
   {
-    name: "Job IT",
+    name: "Login UI",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "Login Form UI built to set up a login system using FireBase Auth. Main aim of this project was to learn how to set up and connect a back-end system.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
-        color: "green-text-gradient",
-      },
-      {
-        name: "scss",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: jobit,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
+        name: "firebase",
         color: "green-text-gradient",
       },
       {
@@ -258,8 +235,31 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
+    image: login,
+    source_code_link: "https://github.com/theodore221/login-form",
+    demo_link: "https://theodore221.github.io/login-form/",
+  },
+  {
+    name: "Forkify",
+    description:
+      "A recipe application that allows users to search and favourite cooking recipes. Main aim of this project was learning to build a complex application in vanilla javascript.",
+    tags: [
+      {
+        name: "javascript",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "rest-api",
+        color: "green-text-gradient",
+      },
+      {
+        name: "css",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: forkify,
+    source_code_link: "https://github.com/theodore221/Forkify",
+    demo_link: "https://curious-cascaron-7a8ab7.netlify.app/",
   },
 ];
 

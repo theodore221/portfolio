@@ -23,7 +23,7 @@ const Navbar = () => {
           }}
         >
           {/* <img src={logo} alt="logo" className=" w-9 h-9 object-contain" /> */}
-          <p className="text-white text-[18px] font-bold cursor-pointer flex">
+          <p className="text-[#000500] text-[18px] font-bold cursor-pointer flex">
             Theodore Xavier &nbsp;
             <span className="md:block hidden"> | Software Engineer</span>
           </p>
@@ -34,7 +34,7 @@ const Navbar = () => {
             <li
               key={link.id}
               className={`${
-                active === link.title ? "text-white" : "text-secondary"
+                active === link.title ? "text-[#000500]" : "text-[#AF5D63]"
               } font-poppins font-medium cursor-pointer text-[16px]`}
               onClick={() => {
                 setToggle(!toggle);
