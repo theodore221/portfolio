@@ -11,7 +11,8 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      // shadow-[rgba(0,0,15,0.5)_0px_1px_4px_0px]
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20  bg-primary `}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -23,7 +24,7 @@ const Navbar = () => {
           }}
         >
           {/* <img src={logo} alt="logo" className=" w-9 h-9 object-contain" /> */}
-          <p className="text-[#000500] text-[18px] font-bold cursor-pointer flex">
+          <p className="text-[#AD8A64] text-[18px] font-bold cursor-pointer flex">
             Theodore Xavier &nbsp;
             <span className="md:block hidden"> | Software Engineer</span>
           </p>
@@ -34,7 +35,7 @@ const Navbar = () => {
             <li
               key={link.id}
               className={`${
-                active === link.title ? "text-[#000500]" : "text-[#AF5D63]"
+                active === link.title ? "text-[#000500]" : "text-[#AD8A64]"
               } font-poppins font-medium cursor-pointer text-[16px]`}
               onClick={() => {
                 setToggle(!toggle);

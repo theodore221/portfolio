@@ -10,19 +10,19 @@ const Hero = () => {
       <div
         className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5 `}
       >
-        <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#AF5D63]" />
+        {/* <div className="flex flex-col justify-center items-center mt-5">
+          <div className="w-5 h-5 rounded-full bg-[#47A162]" />
           <div className="w-1 sm:h-80 h-40 green-gradient" />
-        </div>
+        </div> */}
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-[#000500]`}>
-            Hi, I'm <span className="text-[#AF5D63]">Theodore</span>
+          <h1 className={`${styles.heroHeadText}`}>
+            Hi, I'm <span className="text-[#47A162]">Theodore</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-[#312F2F]`}>
-            I build dynamic and
+          <p className={`${styles.heroSubText} mt-2 text-[#AD8A64]`}>
+            I enjoy solving problems
             <br className="sm:block hidden" />
-            user-friendly web applications
+            and building web applications
           </p>
         </div>
       </div>
