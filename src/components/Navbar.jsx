@@ -1,53 +1,87 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
-// import { X } from "../assets";
-import tx from "../assets/tlogo.png";
+import { menu, close } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setNavVisible(false);
+      } else {
+        setNavVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    const observers = [];
+    navLinks.forEach(({ id, title }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActive(title);
+        },
+        { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+      );
+      const target = el.closest("section") || el;
+      obs.observe(target);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [location.pathname]);
+
   return (
-    <nav
-      // shadow-[rgba(0,0,15,0.5)_0px_1px_4px_0px]
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20  bg-primary `}
+    <motion.nav
+      animate={{ y: navVisible ? 0 : -80 }}
+      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary/90 backdrop-blur-md`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
           to="/"
-          className="flex items-center gap-2"
+          className="flex items-center"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          {/* <img src={logo} alt="logo" className=" w-9 h-9 object-contain" /> */}
-          <p className="text-[#AD8A64] text-[18px] font-bold cursor-pointer flex">
-            Theodore Xavier &nbsp;
-            <span className="md:block hidden"> | Software Engineer</span>
+          <p className="font-clash font-bold text-ink text-[20px] tracking-tight cursor-pointer">
+            Theodore Xavier
           </p>
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((link) => (
-            <li
-              key={link.id}
-              className={`${
-                active === link.title ? "text-[#000500]" : "text-[#AD8A64]"
-              } font-poppins font-medium cursor-pointer text-[16px]`}
-              onClick={() => {
-                setToggle(!toggle);
-                setActive(link.title);
-              }}
-            >
-              <a href={`#${link.id}`}>{link.title}</a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden sm:flex items-center gap-10">
+          <ul className="list-none flex flex-row gap-10">
+            {navLinks.map((link) => (
+              <li
+                key={link.id}
+                className={`${
+                  active === link.title ? "text-ink" : "text-cedar"
+                } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
+                onClick={() => setActive(link.title)}
+              >
+                <a href={`/#${link.id}`}>{link.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        <div className="sm:hidden flex flex-1 justify-end items-center gap-4">
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -57,25 +91,28 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } p-6 solid-card absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {navLinks.map((link) => (
                 <li
                   key={link.id}
                   className={`${
-                    active === link.title ? "text-white" : "text-secondary"
-                  } hover:text-white text-[18px] font-medium cursor-pointer`}
-                  onClick={() => setActive(link.title)}
+                    active === link.title ? "text-ink" : "text-cedar"
+                  } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
+                  onClick={() => {
+                    setToggle(false);
+                    setActive(link.title);
+                  }}
                 >
-                  <a href={`#${link.id}`}>{link.title}</a>
+                  <a href={`/#${link.id}`}>{link.title}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

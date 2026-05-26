@@ -1,17 +1,208 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@600,700,800&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Warm neutrals — almost-black with a slight orange undertone, cream paper */
+  --color-primary:      #0C0907;
+  --color-ink:          #EAE4DA;
+  --color-secondary:    #908070;
+  --color-paper:        #161210;
+  --color-paper-border: #2A211C;
+
+  /* Quiet metallic — used sparingly on small labels / eyebrows */
+  --color-cedar:        #B68A5E;
+
+  /* The single brand accent — disciplined signal orange (Hermès / Penguin family) */
+  --color-flame:        #E8541C;
+  --color-flame-deep:   #B53C0F;
+  --color-flame-warm:   #F2865A;
+
+  /* Single-hue warm gradient — kept only for the cursor trail's tonal movement */
+  --gradient-flame:     linear-gradient(95deg, #B53C0F 0%, #E8541C 50%, #F2865A 100%);
+
+  color-scheme: dark;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-ink);
+  font-family: "Satoshi", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-cedar) 35%, transparent);
+  color: var(--color-ink);
+}
+
+.font-clash {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "ss02" 1;
+  letter-spacing: -0.01em;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "kern" 1;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* ── Solid flame accent for display type — replaces rainbow gradient text ── */
+.text-flame {
+  color: var(--color-flame);
+}
+
+/* Outlined hot-orange display text — for hero wordmark moment */
+.text-outline-flame {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-flame);
+          text-stroke: 1.5px var(--color-flame);
+  paint-order: stroke fill;
+}
+@media (min-width: 1024px) {
+  .text-outline-flame {
+    -webkit-text-stroke-width: 2px;
+            text-stroke-width: 2px;
+  }
+}
+
+/* ── Service card — used inside the horizontal scroller ── */
+.service-card {
+  position: relative;
+  background: var(--color-paper);
+  border: 1px solid var(--color-paper-border);
+  border-radius: 12px;
+  min-height: 480px;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.service-card:hover {
+  border-color: color-mix(in srgb, var(--color-flame) 60%, var(--color-paper-border));
+  transform: translateY(-2px);
+}
+
+/* Hide scrollbar visually while keeping scroll behaviour */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Autoplay progress bar on the active pagination tick — fills over 6s */
+@keyframes autoplay-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.autoplay-progress {
+  animation: autoplay-progress 6s linear forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .autoplay-progress { animation: none; }
+}
+
+/* ── Surface card — gradient-bordered, sunset palette ── */
+.surface-card {
+  position: relative;
+  background: var(--color-paper);
+  border-radius: 14px;
+  isolation: isolate;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.surface-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-flame) 35%, transparent) 0%,
+    color-mix(in srgb, var(--color-paper-border) 95%, transparent) 35%,
+    color-mix(in srgb, var(--color-paper-border) 95%, transparent) 75%,
+    color-mix(in srgb, var(--color-flame-deep) 25%, transparent) 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+.surface-card:hover {
+  transform: translateY(-2px);
+}
+.surface-card:hover::before {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-flame) 75%, transparent) 0%,
+    color-mix(in srgb, var(--color-flame) 35%, transparent) 50%,
+    color-mix(in srgb, var(--color-flame-deep) 65%, transparent) 100%);
+}
+
+/* ── Solid card — hard-edged dark surface, no blur, flame hover ── */
+.solid-card {
+  position: relative;
+  background: var(--color-paper);
+  border: 1px solid var(--color-paper-border);
+  border-radius: 10px;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.solid-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-flame) 70%, var(--color-paper-border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-flame) 35%, transparent),
+    0 10px 28px color-mix(in srgb, var(--color-flame-deep) 18%, transparent);
+}
+
+/* ── Solid media card — for project image cards ── */
+.solid-card-media {
+  position: relative;
+  background: var(--color-paper);
+  border: 1px solid var(--color-paper-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.solid-card-media:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-flame) 70%, var(--color-paper-border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-flame) 35%, transparent),
+    0 14px 36px color-mix(in srgb, var(--color-flame-deep) 20%, transparent);
+}
+
 
 .hash-span {
   margin-top: -100px;
@@ -19,126 +210,39 @@
   display: block;
 }
 
-.black-gradient {
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+/* ── Experience timeline card hover ── */
+.experience-card {
+  border-radius: 10px !important;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.white-gradient {
-  background: #ffffff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #ffffff
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #ffffff
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.experience-card:hover {
+  border-color: color-mix(in srgb, var(--color-flame) 70%, var(--color-paper-border)) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-flame) 35%, transparent),
+    0 14px 36px color-mix(in srgb, var(--color-flame-deep) 18%, transparent) !important;
 }
 
-.violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(
-    -90deg,
-    #804dee 0%,
-    rgba(60, 51, 80, 0) 100%
-  );
+.section-rule {
+  width: 3rem;
+  height: 1px;
+  background-color: var(--color-paper-border);
+  margin: 1.5rem 0 2.5rem 0;
+  border: none;
 }
 
-.green-gradient {
-  background: #47a162;
-  background: linear-gradient(-90deg, #47a162 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(
-    -90deg,
-    #47a162 0%,
-    rgba(60, 51, 80, 0) 100%
-  );
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.4; }
 }
 
-.green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+.availability-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 
-.orange-text-gradient {
-  background: #f12711; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #f12711,
-    #f5af19
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #f12711,
-    #f5af19
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.green-text-gradient {
-  background: #11998e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #11998e,
-    #38ef7d
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #11998e,
-    #38ef7d
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.blue-text-gradient {
-  /* background: -webkit-linear-gradient(#eee, #333); */
-  background: #56ccf2; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #2f80ed,
-    #56ccf2
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #2f80ed,
-    #56ccf2
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.pink-text-gradient {
-  background: #ec008c; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #ec008c,
-    #fc6767
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #ec008c,
-    #fc6767
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* canvas- styles */
+/* canvas styles */
 .canvas-loader {
   font-size: 10px;
   width: 1em;

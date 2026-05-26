@@ -1,15 +1,16 @@
 export const textVariant = (delay) => {
   return {
     hidden: {
-      y: -50,
+      y: -20,
       opacity: 0,
     },
     show: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        duration: 1.25,
+        type: "tween",
+        ease: [0.25, 0.1, 0.25, 1],
+        duration: 1.75,
         delay: delay,
       },
     },
@@ -19,8 +20,8 @@ export const textVariant = (delay) => {
 export const fadeIn = (direction, type, delay, duration) => {
   return {
     hidden: {
-      x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
-      y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
+      x: direction === "left" ? 20 : direction === "right" ? -20 : 0,
+      y: direction === "up" ? 20 : direction === "down" ? -20 : 0,
       opacity: 0,
     },
     show: {
@@ -28,10 +29,10 @@ export const fadeIn = (direction, type, delay, duration) => {
       y: 0,
       opacity: 1,
       transition: {
-        type: type,
+        type: "tween",
         delay: delay,
-        duration: duration,
-        ease: "easeOut",
+        duration: duration * 1.4,
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
@@ -40,17 +41,15 @@ export const fadeIn = (direction, type, delay, duration) => {
 export const zoomIn = (delay, duration) => {
   return {
     hidden: {
-      scale: 0,
       opacity: 0,
     },
     show: {
-      scale: 1,
       opacity: 1,
       transition: {
         type: "tween",
         delay: delay,
-        duration: duration,
-        ease: "easeOut",
+        duration: duration * 1.4,
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
@@ -66,10 +65,10 @@ export const slideIn = (direction, type, delay, duration) => {
       x: 0,
       y: 0,
       transition: {
-        type: type,
+        type: "tween",
         delay: delay,
-        duration: duration,
-        ease: "easeOut",
+        duration: duration * 1.4,
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
@@ -85,4 +84,15 @@ export const staggerContainer = (staggerChildren, delayChildren) => {
       },
     },
   };
+};
+
+export const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: {
+    type: "tween",
+    ease: [0.25, 0.1, 0.25, 1],
+    duration: 0.5,
+  },
 };

@@ -2,28 +2,40 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   mode: "jit",
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        // primary: "#050816",
-        primary: "#F9F6F1",
-        // secondary: "#aaa6c3",
-        secondary: "#000500",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        ink: "var(--color-ink)",
+        cedar: "var(--color-cedar)",
+        paper: "var(--color-paper)",
+        "paper-border": "var(--color-paper-border)",
+        flame: "var(--color-flame)",
+        "flame-deep": "var(--color-flame-deep)",
+        "flame-warm": "var(--color-flame-warm)",
       },
-      boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+      fontFamily: {
+        clash: ["Clash Display", "sans-serif"],
+        satoshi: ["Satoshi", "sans-serif"],
       },
       screens: {
         xs: "450px",
       },
-      backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
-        "tree-pattern": "url('/src/assets/herobg-1.png')",
-        "green-pattern": "url('/src/assets/herobg-variant.png')",
+      keyframes: {
+        "marquee-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "marquee-left": "marquee-left linear infinite",
+        "marquee-right": "marquee-right linear infinite",
       },
     },
   },

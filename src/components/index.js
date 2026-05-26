@@ -7,6 +7,9 @@ import Experience from './Experience';
 import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
+import Footer from './Footer';
+import CursorTrail from './CursorTrail';
+import ProjectDetail from './ProjectDetail';
 
 export {
   Hero,
@@ -17,8 +20,11 @@ export {
   Works,
   Feedbacks,
   Contact,
-  EarthCanvas, 
-  BallCanvas, 
-  ComputersCanvas, 
+  Footer,
+  CursorTrail,
+  ProjectDetail,
+  EarthCanvas,
+  BallCanvas,
+  ComputersCanvas,
   StarsCanvas
 }
