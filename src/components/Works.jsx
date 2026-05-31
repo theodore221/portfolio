@@ -25,6 +25,9 @@ const FeaturedProjectCard = ({ project }) => {
         <img
           src={project.image}
           alt={project.name}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
           className="w-full h-full object-cover"
         />
         <div className="absolute top-4 left-4">
@@ -93,6 +96,8 @@ const ProjectCard = ({
         <img
           src={image}
           alt={name}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div

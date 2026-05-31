@@ -106,6 +106,9 @@ const ProjectDetail = () => {
             transition={{ type: "tween", ease, duration: 1.2, delay: 0.2 }}
             src={project.image}
             alt={project.name}
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
             className="w-full h-full object-cover"
           />
         </motion.div>

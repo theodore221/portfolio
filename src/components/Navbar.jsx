@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { menu, close } from "../assets";
@@ -11,6 +11,22 @@ const Navbar = () => {
   const [navVisible, setNavVisible] = useState(true);
   const lastScrollY = useRef(0);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    setActive(link.title);
+    setToggle(false);
+    if (location.pathname !== "/") {
+      navigate(`/#${link.id}`);
+      return;
+    }
+    const el = document.getElementById(link.id);
+    if (el) {
+      const section = el.closest("section") || el;
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,44 +84,57 @@ const Navbar = () => {
         <div className="hidden sm:flex items-center gap-10">
           <ul className="list-none flex flex-row gap-10">
             {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className={`${
-                  active === link.title ? "text-ink" : "text-cedar"
-                } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
-                onClick={() => setActive(link.title)}
-              >
-                <a href={`/#${link.id}`}>{link.title}</a>
+              <li key={link.id}>
+                <a
+                  href={`/#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link)}
+                  aria-current={active === link.title ? "page" : undefined}
+                  className={`${
+                    active === link.title ? "text-ink" : "text-cedar"
+                  } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
+                >
+                  {link.title}
+                </a>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="sm:hidden flex flex-1 justify-end items-center gap-4">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
+          <button
+            type="button"
+            aria-label={toggle ? "Close menu" : "Open menu"}
+            aria-expanded={toggle}
+            aria-controls="mobile-nav"
             onClick={() => setToggle(!toggle)}
-          />
+            className="w-[28px] h-[28px] flex items-center justify-center cursor-pointer"
+          >
+            <img
+              src={toggle ? close : menu}
+              alt=""
+              aria-hidden="true"
+              className="w-[28px] h-[28px] object-contain"
+            />
+          </button>
           <div
+            id="mobile-nav"
             className={`${
               !toggle ? "hidden" : "flex"
             } p-6 solid-card absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {navLinks.map((link) => (
-                <li
-                  key={link.id}
-                  className={`${
-                    active === link.title ? "text-ink" : "text-cedar"
-                  } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
-                  onClick={() => {
-                    setToggle(false);
-                    setActive(link.title);
-                  }}
-                >
-                  <a href={`/#${link.id}`}>{link.title}</a>
+                <li key={link.id}>
+                  <a
+                    href={`/#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link)}
+                    aria-current={active === link.title ? "page" : undefined}
+                    className={`${
+                      active === link.title ? "text-ink" : "text-cedar"
+                    } font-satoshi font-medium text-[12px] uppercase tracking-[0.3em] cursor-pointer hover:text-ink transition-colors duration-300`}
+                  >
+                    {link.title}
+                  </a>
                 </li>
               ))}
             </ul>

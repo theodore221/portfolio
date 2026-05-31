@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0C0907"/>
+  <rect x="2" y="2" width="1196" height="626" rx="8" stroke="#2A211C" stroke-width="2"/>
+
+  <!-- Eyebrow -->
+  <text x="80" y="180" fill="#B68A5E"
+        font-family="'Satoshi', system-ui, sans-serif" font-size="22" font-weight="500"
+        letter-spacing="0.3em" text-transform="uppercase">
+    BUILDING END-TO-END PRODUCTION PLATFORMS · MELBOURNE
+  </text>
+
+  <!-- Name: solid + outlined -->
+  <text x="80" y="320" fill="#EAE4DA"
+        font-family="'Clash Display', sans-serif" font-size="120" font-weight="700"
+        letter-spacing="-0.04em">
+    THEODORE
+  </text>
+  <text x="80" y="450" fill="transparent" stroke="#E8541C" stroke-width="2.5"
+        font-family="'Clash Display', sans-serif" font-size="120" font-weight="700"
+        letter-spacing="-0.04em">
+    XAVIER
+  </text>
+
+  <!-- Tagline -->
+  <text x="80" y="540" fill="#908070"
+        font-family="'Satoshi', system-ui, sans-serif" font-size="26" font-weight="400">
+    Full-Stack Engineer · Next.js · TypeScript · Supabase · AWS
+  </text>
+
+  <!-- Availability dot + label -->
+  <circle cx="92" cy="585" r="6" fill="#E8541C"/>
+  <text x="110" y="591" fill="#B68A5E"
+        font-family="'Satoshi', system-ui, sans-serif" font-size="14" font-weight="500"
+        letter-spacing="0.25em" text-transform="uppercase">
+    AVAILABLE · FULL-TIME OR CONTRACT
+  </text>
+</svg>
