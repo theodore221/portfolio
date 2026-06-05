@@ -32,8 +32,8 @@ const HomePage = () => {
         <Hero />
       </div>
       <About />
-      <Experience />
       <Works />
+      <Experience />
       <Tech />
       <Feedbacks />
       <Contact />
