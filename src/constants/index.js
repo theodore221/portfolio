@@ -15,6 +15,7 @@ import {
   git,
   figma,
   docker,
+  threejs,
   itsmy,
   yrts,
   skinsaver,
