@@ -86,6 +86,29 @@ export const staggerContainer = (staggerChildren, delayChildren) => {
   };
 };
 
+export const staggerReveal = (delay = 0, stagger = 0.08) => ({
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: stagger,
+      delayChildren: delay,
+    },
+  },
+});
+
+export const revealItem = {
+  hidden: { y: 16, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "tween",
+      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.9,
+    },
+  },
+};
+
 export const pageTransition = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
